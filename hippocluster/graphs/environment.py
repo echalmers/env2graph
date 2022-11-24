@@ -7,6 +7,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import gymnasium as gym
 import minigrid
+import custom_minigrid_envs
 
 def make_env(env_key, seed=None, render_mode=None):
 	env = gym.make(env_key, render_mode=render_mode)
