@@ -53,4 +53,6 @@ if graph.n_communities is not None:
     plt.title('ground truth clusters')
     plt.subplot(1, n_panels, 3)
     graph.plot(node_colors={graph.nodes[i]: colors[graph.communities[i]] for i in range(graph.n_nodes)})
-plt.pause(10)
+
+plt.ioff()
+plt.show()
