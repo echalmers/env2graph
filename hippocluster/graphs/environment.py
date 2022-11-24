@@ -7,6 +7,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import gymnasium as gym
 import minigrid
+import custom_minigrid_envs
 
 def make_env(env_key, seed=None, render_mode=None):
 	env = gym.make(env_key, render_mode=render_mode)
@@ -61,7 +62,7 @@ class RandomWalkEnvironment(RandomWalkGraph):
 		for i in range(len(edges)):
 			add_edge_to_graph(G, points[edges[i][0]], points[edges[i][1]], edges[i][2])
 
-		super().__init__(G, pos={node: list(node) for node in G.nodes})
+		super().__init__(G, pos={node: (node[0], node[1]*-1) for node in G.nodes})
 
 	@property
 	def communities(self):
