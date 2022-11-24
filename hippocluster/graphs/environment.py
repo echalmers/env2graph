@@ -2,7 +2,6 @@ from hippocluster.graphs.abstract import RandomWalkGraph
 
 from networkx.generators import grid_2d_graph
 from networkx import planar_layout
-from imageio import imread
 
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -14,10 +13,6 @@ def make_env(env_key, seed=None, render_mode=None):
 	env.reset(seed=seed)
 	return env
 
-def bmp_to_array(img_path):
-	arr = imread(img_path)
-	# print(im)
-	return arr
 
 def add_edge_to_graph(G, e1, e2, w):
 	G.add_edge(e1, e2, weight=w)
@@ -38,16 +33,15 @@ class RandomWalkEnvironment(RandomWalkGraph):
 		points = []
 		edges = []
 		
-		# Grid = [[0 for y in range(height)] for x in range(width)]
-		Grid = bmp_to_array('maze_simple.bmp')
-		# value = 0
-		# for x in range(width):
-		# 	for y in range(height):
-		# 		if env.grid.get(x,y) == None:
-		# 			value = 0
-		# 		if isinstance(env.grid.get(x,y), minigrid.core.world_object.Wall):
-		# 			value = 1
-		# 		Grid[x][y] = value
+		Grid = [[0 for y in range(height)] for x in range(width)] 
+		value = 0
+		for x in range(width):
+			for y in range(height):
+				if env.grid.get(x,y) == None:
+					value = 0
+				if isinstance(env.grid.get(x,y), minigrid.core.world_object.Wall):
+					value = 1
+				Grid[x][y] = value
 		
 		for y in range(height):
 			for x in range(width):
